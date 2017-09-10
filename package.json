@@ -1,0 +1,19 @@
+{
+  "name": "lmu-cmsi386",
+  "version": "1.0.0",
+  "description": "Homework for CMSI 386 Programming Languages",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malvarez27/lmu-cmsi386.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malvarez27/lmu-cmsi386/issues"
+  },
+  "homepage": "https://github.com/malvarez27/lmu-cmsi386#readme"
+}
