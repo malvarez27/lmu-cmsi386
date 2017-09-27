@@ -1,0 +1,6 @@
+lmu-cmsi-386/
+node_modules
+env
+.cache
+__pycache__
+*.pyc
