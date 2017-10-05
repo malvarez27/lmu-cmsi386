@@ -1,18 +1,34 @@
+# This is homework 2.
 import random
 from Crypto.Cipher import AES
 
 
+def change(cents):
+    if cents < 0:
+        raise ValueError('amount cannot be negative')
+    coins_list = []
+    remaining = cents
+
+    def find_coin_number(coin_value):
+        coins_list.append(math.floor(remaining/coin_value))
+	    remaining %= coin_value
+
+    for value in [25, 10, 5, 1]:
+        find_coin_number(value)
+
+
 def make_crypto_functions(key, initialization_vector):
-	local_key = key
-	local_initialization_vector = initialization_vector
-	def encrypt(text):
+    local_key = key
+    local_initialization_vector = initialization_vector
+
+    def encrypt(text):
 		cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
 		return cipher.encrypt(text)
 
 	def decrypt(text):
 		cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
 		return cipher.decrypt(text)
-		
+
 
 	return (encrypt, decrypt)
 
@@ -51,17 +67,18 @@ def interleave(first, *second):
 			result.append(second[x])
 	return result
 
-def change():
-	print("asdfasd")
 
 def strip_quotes():
 	print("hi")
 
+
 def say():
 	print ("hi")
 
+
 def Cylinder():
 	print("hi")
+
 
 def random_name():
 	print("hi")
