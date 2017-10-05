@@ -4,20 +4,6 @@ from Crypto.Cipher import AES
 import math
 
 
-def change(cents):
-    if cents < 0:
-        raise ValueError('amount cannot be negative')
-    coins_list = []
-    remaining = cents
-
-    def find_coin_number(coin_value):
-        coins_list.append(math.floor(remaining/coin_value))
-	    remaining %= coin_value
-
-    for value in [25, 10, 5, 1]:
-        find_coin_number(value)
-
-
 def make_crypto_functions(key, initialization_vector):
     local_key = key
     local_initialization_vector = initialization_vector
