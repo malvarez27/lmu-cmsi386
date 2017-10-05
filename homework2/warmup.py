@@ -6,23 +6,23 @@ import math
 def make_crypto_functions(key, initialization_vector):
     local_key = key
     local_initialization_vector = initialization_vector
+
     def encrypt(text):
         cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
         return cipher.encrypt(text)
+
     def decrypt(text):
         cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
         return cipher.decrypt(text)
-        
-
     return (encrypt, decrypt)
 
-"""  5 triples."""
+
 def triples(upper_value):
     result = []
-    for a in range(1, upper_value+ 1):
-        for b in range(1, upper_value+ 1):
-            for c in range(1, upper_value+ 1):
-                if a**2 + b**2 == c**2 and a < b  and b < c: 
+    for a in range(1, upper_value+1):
+        for b in range(1, upper_value+1):
+            for c in range(1, upper_value+1):
+                if a ** 2 + b ** 2 == c ** 2 and a < b and b < c:
                     result.append((a, b, c))
     return result
 
@@ -32,7 +32,6 @@ def scramble(words):
     new_words = ''.join(permuted_words)
     return new_words
 
-# print(scramble(""))
 
 def powers(base, max1):
     if (max1 == 0):
@@ -44,9 +43,8 @@ def powers(base, max1):
         exponent += 1
         number = base ** exponent
 
+
 def interleave(first, *second):
-    one_length = len(first)
-    two_length = len(second)
     max_num = max(len(first), len(second))
     result = []
     for x in range(0, max_num):
@@ -73,6 +71,7 @@ def change(cents):
 def strip_quotes(str):
     return re.sub("\"|\'", "", str)
 
+
 def say(word):
     if word == None:
         return ""
@@ -86,13 +85,8 @@ def say(word):
 def Cylinder():
     print("hi")
 
+
 def random_name():
     print("hi")
 
 
-
-
-# if __name__ == "__main__":
-#   e, d = make_crypto_functions('zombie devops feynman123', '0000000000000000')
-#   print(e)
-#   print(d)
