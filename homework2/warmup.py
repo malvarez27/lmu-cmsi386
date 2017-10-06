@@ -1,20 +1,45 @@
+# This is homework 2.
+
+import re
 import random
-from Crypto.Cipher import AES
 import math
+from Crypto.Cipher import AES
+import requests
 
 
-def make_crypto_functions(key, initialization_vector):
-    local_key = key
-    local_initialization_vector = initialization_vector
+def change(cents):
+    if cents < 0:
+        raise ValueError('amount cannot be negative')
+    coins_list = []
+    remaining = cents
 
-    def encrypt(text):
-        cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
-        return cipher.encrypt(text)
+    def find_coin_number(coin_value, remaining):
+        coins_list.append(math.floor(remaining/coin_value))
+        return remaining % coin_value
+    for value in [25, 10, 5, 1]:
+        remaining = find_coin_number(value, remaining)
+    return tuple(coins_list)
 
-    def decrypt(text):
-        cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
-        return cipher.decrypt(text)
-    return (encrypt, decrypt)
+
+def strip_quotes(str):
+    return re.sub("\"|\'", "", str)
+
+
+def scramble(words):
+    permuted_words = random.sample(words, len(words))
+    new_words = ''.join(permuted_words)
+    return new_words
+
+
+def powers(base, max1):
+    if (max1 == 0):
+        raise StopIteration
+    number = 0
+    exponent = 0
+    while number <= max1:
+        yield base ** exponent
+        exponent += 1
+        number = base ** exponent
 
 
 def triples(upper_value):
@@ -27,21 +52,15 @@ def triples(upper_value):
     return result
 
 
-def scramble(words):
-    permuted_words = random.sample(words, len(words))
-    new_words = ''.join(permuted_words)
-    return new_words
+def say(word=None):
+    if word is None:
+        return ""
 
-
-def powers(base, max1):
-    if (max1 == 0):
-        return 0
-    number = 0
-    exponent = 0
-    while number <= max1:
-        yield base ** exponent
-        exponent += 1
-        number = base ** exponent
+    def phrase(new_word=None):
+        if new_word is None:
+            return word
+        return say(word + " " + new_word)
+    return phrase
 
 
 def interleave(first, *second):
@@ -55,38 +74,48 @@ def interleave(first, *second):
     return result
 
 
-def change(cents):
-    if cents < 0:
-        raise ValueError('amount cannot be negative')
-    coins_list = []
-    remaining = cents
-    def find_coin_number(coin_value):
-        coins_list.append(math.floor(remaining/coin_value))
-        remaining = remaining % coin_value
-    for value in [25, 10, 5, 1]:
-        find_coin_number(value)
-    return tuple(coins_list)
+class Cylinder:
+    def __init__(self, height=1, radius=1):
+        self.height = height
+        self.radius = radius
+
+    @property
+    def volume(self):
+        return math.pi * (self.radius ** 2) * self.height
+
+    @property
+    def surface_area(self):
+        return 2 * math.pi * ((self.radius * self.height) + (self.radius ** 2))
+
+    def widen(self, factor):
+        self.radius *= factor
+        return self
+
+    def stretch(self, factor):
+        self.height *= factor
+        return self
 
 
-def strip_quotes(str):
-    return re.sub("\"|\'", "", str)
+def make_crypto_functions(key, initialization_vector):
+    local_key = key
+    local_initialization_vector = initialization_vector
+
+    def encrypt(text):
+        cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
+        return cipher.encrypt(text)
+
+    def decrypt(text):
+        cipher = AES.new(local_key, AES.MODE_CBC, local_initialization_vector)
+        return cipher.decrypt(text)
+
+    return (encrypt, decrypt)
 
 
-def say(word):
-    if word == None:
-        return ""
-    def phrase(new_word):
-        if new_word == None:
-            return word
-        return say( word + " " + other)
-    return phrase(new_word)
-
-
-def Cylinder():
-    print("hi")
-
-
-def random_name():
-    print("hi")
-
-
+def random_name(gender, region):
+    response = requests.get('https://uinames.com/api/',
+                            params={'gender': gender,
+                                    'region': region,
+                                    'amount': 1})
+    if 'error' in response.json():
+        raise ValueError(response.text)
+    return '{}, {}'.format(response.json()['surname'], response.json()['name'])
