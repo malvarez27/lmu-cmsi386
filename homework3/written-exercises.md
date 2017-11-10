@@ -6,7 +6,7 @@ struct {
 } A[10][10];
 ```
 On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be.
-> The address of A[0][0] is 0x7fff5fbff300 and the address for A[3][7] is 0x7fff5fbff428. The values either end in a 0 or an 8. It is a pattern for example, I tested A[3][0], A[3][1], A[3][2],... and so one till A[3][7] and the out put was  0x7fff5fbff3f8, 0x7fff5fbff400, 0x7fff5fbff408, 0x7fff5fbff410, 0x7fff5fbff418, 0x7fff5fbff420, 0x7fff5fbff428.
+> The address of A[0][0] is 0x7fff5fbff300 and the address for A[3][7] is 0x7fff5fbff428. The values either end in a 0 or an 8. It is a pattern for example, I tested A[3][0], A[3][1], A[3][2],... and so one till A[3][7] and the out put was  0x7fff5fbff3f8, 0x7fff5fbff400, 0x7fff5fbff408, 0x7fff5fbff410, 0x7fff5fbff418, 0x7fff5fbff420, 0x7fff5fbff428. Therefore, the difference between the two address is 296.
 
 ### 2. (5 pts) Explain the meaning of the following C++ declarations:
 ```c++

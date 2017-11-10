@@ -6,11 +6,13 @@
 using namespace std;
 
 void test_empty_queue_has_zero_size() {
+  cout << "Testing zero size empty" << endl;
   Queue<string> q;
   assert(q.get_size() == 0);
 }
 
 void test_some_insertions_and_deletions() {
+  cout << "Testing insertions and deletions" << endl;
   Queue<string> q;
   q.enqueue("one");
   assert(q.get_size() == 1);
@@ -26,6 +28,7 @@ void test_some_insertions_and_deletions() {
 }
 
 void test_no_copies() {
+  cout << "Testing no copies" << endl;
   Queue<int> p;
   Queue<int> q;
   // No way to test this at run time, but uncomment the following lines
@@ -41,6 +44,7 @@ Queue<int> one_two_three() {
 }
 
 void test_moves() {
+  cout << "Testing moves" << endl;
   // Assignment of a temporary is a move
   Queue<int> p = Queue<int>();
 
@@ -56,6 +60,7 @@ void test_moves() {
 }
 
 void test_dequeue_from_empty_queue_throws_underflow_error() {
+  cout << "Testing dequeue from empty" << endl;
   Queue<bool> q;
   try {
     q.dequeue();
@@ -74,5 +79,5 @@ int main() {
   test_dequeue_from_empty_queue_throws_underflow_error();
   test_no_copies();
   test_moves();
-  cout << "All tests passed\n";
+  cout << "All tests passed" << endl;
 }
