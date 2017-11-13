@@ -28,7 +28,7 @@ double (*f(double (*)(double, double[]), double)) (double, ...);
 Describe rigorously, in English, the type of f.
 
 
-> The declaration above is a function that returns a function and accepts certain arguments. It is clear that the most left double states that what ever is on the right is a double. The declaration also consists on three functions. The first function is (*f(double (*)(double, double[]), double)) that returns a double. The second function (*f) which is a partner to a function and returns a function. The third function is (*)(double, double[]), double)), which is an argument that returns a double.It also includes arguments that is accepted by the function.  
+> The declaration above is a function that returns a function and accepts certain arguments. It is clear that the most left double states that what ever is on the right is a double. The fist function is double  and only takes in the parameters (double, ...) and returns a double. The declaration also consists on three functions. The second function is (*f(double (*)(double, double[]), double)) that returns a function. The most inner function is  The third function is (*)(double, double[]), double)), which is an argument that returns a double and takes in the parameters of a double and a double array. It also includes arguments that is accepted by the function.  
 
 ### 4. (5 pts) What happens when we “redefine” a field in a C++ subclass? For example, suppose we have:
 ```c++
