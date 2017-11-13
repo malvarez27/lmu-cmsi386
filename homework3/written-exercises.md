@@ -15,6 +15,10 @@ double (*b)[n];
 double (*c[n])();
 double (*d())[n];
 ```
+> double *a[n] is an array of double pointers size n.
+double (*b)[n] is a pointer to an array size n.
+double (*c[n])() is an array size n of pointers to functions that return doubles.
+double (*d())[n] is a function that returns a pointer to an array size n of doubles.
 
 
 ### 3. (5 pts) Consider the following declaration in C++:
