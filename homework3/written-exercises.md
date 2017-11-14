@@ -47,8 +47,32 @@ public:
 ```
 Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
 
->
+> '''It contains 2. The code that demonstrates this is:
+class Base {
+public:
+  int a;
+  std::string b = "hey";
+};
 
+
+class Derived: public Base {
+public:
+  float c;
+  int b = 4;
+};
+
+
+int main() {
+    Base *outer = new Base();
+    Derived *inner = new Derived();
+    std::cout << outer->b << "\n";
+    std::cout << inner->b << "\n";
+    std::cout << ((Base*)inner)->b << "\n";
+    return 0;
+}
+
+of which the output is "hey 4 hey", so the inner class when referred to, prints the local variable b, rather than the inherited variable b, and it hides the inherited variable b. However, when inner is referenced with a Base pointer, the base pointer references the variable that it would have found in the Base class, in turn, revealing the Base class variable b, 4. 
+'''
 ### 5. (5 pts) What does the following C++ program output?
 ```c++
 #include <iostream>
