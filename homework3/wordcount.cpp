@@ -22,7 +22,6 @@ void remove_nonletters(std::string &sentence){
       sentence[i] = tolower(sentence[i]);
     }
   }
-  return sentence;
 }
 
 string sentence= " ";
