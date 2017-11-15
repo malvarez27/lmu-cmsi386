@@ -42,7 +42,6 @@ void printCounts(map<string,int> counts) {
 }
 
 int main() {
-    string s = "hi, my name is123";
-    remove_nonletters(s);
-  printCounts(getCounts((sentence)));
+    vector<string> words;
+  printCounts(getCounts(words, sentence));
 }
