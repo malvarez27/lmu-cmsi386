@@ -6,31 +6,17 @@
 
 using namespace std;
 
-void remove_nonletters(std::string &sentence){
-  int i = 0;
-  for (i = 0; i < sentence.length(); i++){
-    sentence[i] = tolower(sentence[i]) ;
-    if(!(isalpha(sentence[i]))) {
-      if(isalpha(sentence[i+1])){
-        sentence[i] = ' ';
-    }
-      else{
-    sentence[i] = ' ';
-      }
-    }
-    else{
-      sentence[i] = tolower(sentence[i]);
-    }
-  }
-}
-
-string sentence= " ";
-
-
-map<string, int> getCounts(vector<string> words, string sentence) {
+auto getCounts(std::string &sentence){
+  string word;
   map<string, int> counts;
-  for (string word: words) {
-    counts[word]++;
+  for (char c: sentence) {
+    c = tolower(c);
+    if (isalpha(c)) {
+      word += c;
+    } else if (word != ""){
+      counts[word]++;
+      word = "";
+    }
   }
   return counts;
 }
@@ -41,7 +27,16 @@ void printCounts(map<string,int> counts) {
   }
 }
 
+string get_standard_input() {
+  string contents = "";
+  string line;
+  while (getline(cin, line)) {
+    contents += line;
+  }
+  return contents;
+}
+
 int main() {
-    vector<string> words;
-  printCounts(getCounts(words, sentence));
+  string sentence = get_standard_input();
+  printCounts(getCounts(sentence));
 }
