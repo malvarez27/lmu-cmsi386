@@ -16,9 +16,9 @@ double (*c[n])();
 double (*d())[n];
 ```
 > double *a[n] is an array of double pointers size n.
-double (*b)[n] is a pointer to an array size n.
-double (*c[n])() is an array size n of pointers to functions that return doubles.
-double (*d())[n] is a function that returns a pointer to an array size n of doubles.
+> double (*b)[n] is a pointer to an array size n.
+> double (*c[n])() is an array size n of pointers to functions that return doubles.
+> double (*d())[n] is a function that returns a pointer to an array size n of doubles.
 
 
 ### 3. (5 pts) Consider the following declaration in C++:
@@ -96,4 +96,12 @@ Verify that the answer you obtained is the same that would be inferred from appl
 > The output for this program is 2,5,2 because when the main function is called the g function will first display the global variable because that is what was stated first, then it will output the local variable. Next, when std::cout << x << '\n'; is called it will display the global variable. If dynamic scoping was used the output would have been 5,2,2 because dynamic scoping can be thought of as context-specific scoping. Dynamic scoping means that when a symbol is referenced, the compiler will walk up the symbol-table stack to find the correct instance of the variable to use.
 
 ### 6. (5 pts) Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array, and (b) a std::array.
->
+```c++
+template <typename T>;
+void shuffleArray(T* a, int length)
+  
+
+```
+
+
+
